@@ -1,3 +1,9 @@
+policykit-1 (0.105-14.1ubuntu0.6) xenial-security; urgency=medium
+
+  * SECURITY
+
+ -- kiorky <kiorky@cryptelium.net>  Wed, 27 Mar 2019 09:57:28 -0400
+
 policykit-1 (0.105-14.1ubuntu0.5) xenial-security; urgency=medium
 
   * SECURITY UPDATE: start time protection mechanism bypass

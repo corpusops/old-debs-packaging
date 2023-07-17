@@ -475,6 +475,16 @@ main (int argc, char *argv[])
   pid_t pid_of_caller;
   gpointer local_agent_handle;
 
+  /*
+   * If 'pkexec' is called wrong, just show help and bail out.
+   */
+  if (argc<1)
+    {
+      clearenv();
+      usage(argc, argv);
+      exit(1);
+    }
+
   ret = 127;
   authority = NULL;
   subject = NULL;
@@ -591,7 +601,15 @@ main (int argc, char *argv[])
           goto out;
         }
       g_free (path);
-      argv[n] = path = s;
+      path = s;
+
+      /* argc<2 and pkexec runs just shell, argv is guaranteed to be null-terminated.
+       * /-less shell shouldn't happen, but let's be defensive and don't write to null-termination
+       */
+      if (argv[n] != NULL)
+      {
+        argv[n] = path;
+      }
     }
   if (access (path, F_OK) != 0)
     {

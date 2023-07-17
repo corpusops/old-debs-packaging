@@ -353,6 +353,13 @@ main (int argc, char *argv[])
   local_agent_handle = NULL;
   ret = 126;
 
+  if (argc < 1)
+    {
+      usage (argc, argv);
+      exit(1);
+    }
+
+
   g_type_init ();
 
   details = polkit_details_new ();
